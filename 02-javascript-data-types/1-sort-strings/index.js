@@ -5,5 +5,9 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-
+    if (param != "asc" && param != "desc") {
+        throw new Error(`Wrong order parameter: ${param}`);
+    }
+    let sortedArray = [...arr].sort((a, b) => a.localeCompare(b, ["ru", "en"], {caseFirst: "upper"}));
+    return param == "asc" ? sortedArray : sortedArray.reverse();
 }
