@@ -8,6 +8,6 @@ export function sortStrings(arr, param = 'asc') {
     if (param != "asc" && param != "desc") {
         throw new Error(`Wrong order parameter: ${param}`);
     }
-    let sortedArray = [...arr].sort((a, b) => a.localeCompare(b, ["ru", "en"], {caseFirst: "upper"}));
-    return param == "asc" ? sortedArray : sortedArray.reverse();
+    const order = param == "asc" ? 1 : -1;
+    return [...arr].sort((a, b) => order * a.localeCompare(b, ["ru", "en"], {caseFirst: "upper"}));
 }
